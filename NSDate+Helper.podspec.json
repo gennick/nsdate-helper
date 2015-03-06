@@ -1,6 +1,6 @@
 {
   "name": "NSDate+Helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "A category to extend Cocoa's NSDate class with some convenience functions.",
   "description": "This is a category for the NSDate class that provides some convenience methods for working with NSDate objects and displaying formatted and relative strings.",
   "homepage": "https://github.com/billymeltdown/nsdate-helper",

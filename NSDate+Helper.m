@@ -331,4 +331,51 @@ static NSDateFormatter *_displayFormatter = nil;
 	return [NSDate timestampFormatString];
 }
 
+- (NSDate *)addMonths:(int)n {
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setMonth:n];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:self options:0];
+    [dateComponents release];
+    return newDate;
+}
+
+- (NSDate *)addDays:(int)n {
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:n];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:self options:0];
+    [dateComponents release];
+    return newDate;
+}
+
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+                 interval:NULL forDate:fromDateTime];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+                 interval:NULL forDate:toDateTime];
+    
+    NSDateComponents *difference = [calendar components:NSDayCalendarUnit
+                                               fromDate:fromDate toDate:toDate options:0];
+    
+    return [difference day];
+}
+
+- (void)setHours:(int)h minutes:(int)m seconds:(int)s {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:self];
+    
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setDay:dateComponents.day];
+    [dateComps setMonth:dateComponents.month];
+    [dateComps setYear:dateComponents.year];
+    [dateComps setHour:h];
+    [dateComps setMinute:m];
+    [dateComps setSecond:s];
+    self = [calendar dateFromComponents:dateComps];
+}
+
 @end

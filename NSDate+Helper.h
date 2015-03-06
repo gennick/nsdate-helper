@@ -64,4 +64,9 @@
 + (NSString *)timestampFormatString;
 + (NSString *)dbFormatString;
 
+- (NSDate *)addMonths:(int)n;
+- (NSDate *)addDays:(int)n;
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
+- (void)setHours:(int)h minutes:(int)m seconds:(int)s;
+
 @end
