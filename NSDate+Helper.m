@@ -334,7 +334,7 @@ static NSDateFormatter *_displayFormatter = nil;
 - (NSDate *)addMonths:(int)n {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setMonth:n];
-    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:self options:0];
+    NSDate *newDate = [_calendar dateByAddingComponents:dateComponents toDate:self options:0];
     [dateComponents release];
     return newDate;
 }
@@ -342,7 +342,7 @@ static NSDateFormatter *_displayFormatter = nil;
 - (NSDate *)addDays:(int)n {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setDay:n];
-    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:self options:0];
+    NSDate *newDate = [_calendar dateByAddingComponents:dateComponents toDate:self options:0];
     [dateComponents release];
     return newDate;
 }
