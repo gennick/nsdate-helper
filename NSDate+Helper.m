@@ -128,6 +128,18 @@ static NSDateFormatter *_displayFormatter = nil;
 	return [weekdayComponents minute];
 }
 
+- (NSUInteger)day {
+    NSCalendar *calendar = [[self class] sharedCalendar];
+    NSDateComponents *weekdayComponents = [calendar components:(NSDayCalendarUnit) fromDate:self];
+    return [weekdayComponents day];
+}
+
+- (NSUInteger)month {
+    NSCalendar *calendar = [[self class] sharedCalendar];
+    NSDateComponents *weekdayComponents = [calendar components:(NSMonthCalendarUnit) fromDate:self];
+    return [weekdayComponents month];
+}
+
 - (NSUInteger)year {
     NSCalendar *calendar = [[self class] sharedCalendar];
     NSDateComponents *weekdayComponents = [calendar components:(NSYearCalendarUnit) fromDate:self];
@@ -332,17 +344,19 @@ static NSDateFormatter *_displayFormatter = nil;
 }
 
 - (NSDate *)addMonths:(int)n {
+    NSCalendar *calendar = [[self class] sharedCalendar];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setMonth:n];
-    NSDate *newDate = [_calendar dateByAddingComponents:dateComponents toDate:self options:0];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:self options:0];
     [dateComponents release];
     return newDate;
 }
 
 - (NSDate *)addDays:(int)n {
+    NSCalendar *calendar = [[self class] sharedCalendar];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setDay:n];
-    NSDate *newDate = [_calendar dateByAddingComponents:dateComponents toDate:self options:0];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:self options:0];
     [dateComponents release];
     return newDate;
 }
@@ -351,7 +365,7 @@ static NSDateFormatter *_displayFormatter = nil;
     NSDate *fromDate;
     NSDate *toDate;
     
-    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [[self class] sharedCalendar];
     
     [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
                  interval:NULL forDate:fromDateTime];
@@ -365,7 +379,7 @@ static NSDateFormatter *_displayFormatter = nil;
 }
 
 - (void)setHours:(int)h minutes:(int)m seconds:(int)s {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [[self class] sharedCalendar];
     NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:self];
     
     NSDateComponents *dateComps = [[NSDateComponents alloc] init];

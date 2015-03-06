@@ -44,6 +44,8 @@
 - (NSUInteger)weekNumber;
 - (NSUInteger)hour;
 - (NSUInteger)minute;
+- (NSUInteger)day;
+- (NSUInteger)month;
 - (NSUInteger)year;
 - (long int)utcTimeStamp; //full seconds since
 + (NSDate *)dateFromString:(NSString *)string;
